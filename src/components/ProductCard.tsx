@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { IProduct as ProductcardProps } from '../types'
+import type { Product as ProductcardProps } from '../types'
 import { ShoppingCart } from 'lucide-react';
 
 const ProductCard = ({product}: {product: ProductcardProps}) => {
