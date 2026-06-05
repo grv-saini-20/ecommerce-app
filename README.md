@@ -1,4 +1,4 @@
-# Simple React E-Commerce Storefront
+# Basic React E Commerce Store
 
 A clean, responsive single-page e-commerce storefront built using **React**, **TypeScript**, **Tailwind CSS**, and **React Router**. The application communicates with the live Platzi Fake Store API to fetch inventory data and utilizes local storage to persist shopping session states.
 
