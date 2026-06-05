@@ -64,15 +64,15 @@ const ProductDetails = () => {
 
             <div className="flex flex-col justify-between">
             <div>
-                <h1 className="mt-4 text-2xl md:text-3xl font-extrabold text-gray-900">
+                <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900">
                 {product.title}
                 </h1>
                 
-                <p className="mt-3 text-3xl font-black text-gray-900">
+                <p className="mt-2 text-3xl font-black text-gray-900">
                 ${product.price}
                 </p>
 
-                <div className="mt-6 pt-6">
+                <div className="mt-3 pt-3">
                 <h3 className="text-sm font-semibold text-gray-500">Description</h3>
                 <p className="mt-2 text-base text-gray-600">
                     {product.description}
@@ -80,7 +80,7 @@ const ProductDetails = () => {
                 </div>
             </div>
 
-            <div className="mt-8 pt-6">
+            <div className="mt-4 pt-6">
                 <button
                     onClick={handleAddToCart}
                     className="w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white text-sm font-medium py-2.5 px-4 rounded-md transition-colors duration-150 cursor-pointer shadow-sm"

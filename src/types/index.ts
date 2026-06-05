@@ -12,3 +12,8 @@ export interface Product {
     },
     images: string[]
 }
+
+export interface Category {
+  id: number;
+  name: string;
+}

@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
-import { fetchAllProducts } from "../services/productService";
+import { fetchAllProducts, fetchCategories } from "../services/productService";
 import { Loader } from "lucide-react";
 import ProductCard from "../components/ProductCard";
+import type { Category, Product } from "../types";
 
 const Products = () => {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
+    useEffect(() => {
+        const loadCategories = async () => {
+            try {
+                const categoryData = await fetchCategories();
+                setCategories(categoryData);
+            } catch (err) {
+                console.error("Failed to fetch categories", err);
+            }
+        };
+        loadCategories();
+    }, []);
 
     useEffect(() => {
         const loadInitialData = async() => {
@@ -27,6 +41,33 @@ const Products = () => {
   return (
     <>
       <h1 className="text-2xl font-bold mb-4">Products</h1>
+      <div className="flex flex-wrap gap-2 mb-8 items-center">
+        <span className="text-xs font-bold uppercase text-gray-400 tracking-wider mr-2">Filter By:</span>
+        <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-4 py-2 text-sm font-semibold rounded-full border transition-all cursor-pointer ${
+                selectedCategory === null
+                    ? "bg-sky-600 border-sky-600 text-white shadow-sm"
+                    : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+            }`}
+        >
+            All Products
+        </button>
+
+        {categories.map((category) => (
+            <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-4 py-2 text-sm font-semibold rounded-full border transition-all cursor-pointer ${
+                    selectedCategory === category.id
+                        ? "bg-sky-600 border-sky-600 text-white shadow-sm"
+                        : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                }`}
+            >
+                {category.name}
+            </button>
+        ))}
+    </div>
       {loading && <div className="fixed top-[50%] left-[50%] flex justify-between items-center animate-spin"><Loader size={48}/></div>}
       {error && <p>Error loading products</p>}
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
