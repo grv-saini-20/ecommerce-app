@@ -1,11 +1,9 @@
 import './App.css'
 
 function App() {
-  
-
   return (
     <>
-      app
+      <h1 className="text-4xl font-bold">E-Commerce APP</h1>
     </>
   )
 }
