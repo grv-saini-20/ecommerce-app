@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import type { Product } from "../types";
 
@@ -24,6 +24,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
     });
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
         
     const addToCart = (product: Product) => {
         setCart((prevCart) => {
@@ -40,7 +44,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const removeFromCart = (productId: string) => {
-        setCart((prevCart) => prevCart.filter(item => item.product.id !== productId));
+        setCart((prevCart) => {
+            const existingItem = prevCart.find(item => item.product.id === productId);
+            if(!existingItem) return prevCart;
+            if (existingItem) {
+                if (existingItem.quantity > 1) {
+                    return prevCart.map(item =>
+                        item.product.id === productId
+                            ? { ...item, quantity: item.quantity - 1 }
+                        : item
+                );
+            } else {
+                return prevCart.filter(item => item.product.id !== productId);
+            }
+        }
+        });
     }
 
     const cartTotal = cart.reduce((total, item) => total + item.product.price * item.quantity, 0);

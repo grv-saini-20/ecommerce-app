@@ -6,12 +6,14 @@ import { createRoutesFromElements, Route, createBrowserRouter, RouterProvider } 
 import Products from './pages/Products.tsx'
 import ProductDetails from './pages/ProductDetails.tsx'
 import { CartProvider } from './context/cartContext.tsx'
+import Cart from './pages/Cart.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App/>}>
       <Route index element={<Products />} />
       <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="/cart" element={<Cart />} />
     </Route>
   )
 )
