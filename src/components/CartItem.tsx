@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
 import { useCart } from "../context/cartContext";
+import type { Product } from "../types";
 
-function CartItem({ item, quantity }: {item : any, quantity: number}) {
+function CartItem({ item, quantity }: {item : Product, quantity: number}) {
   const { removeFromCart } = useCart();
 
   const handleRemove = useCallback(() => {

@@ -27,8 +27,9 @@ const Products = () => {
         const loadInitialData = async() => {
             try {
                 setLoading(true);
+                setError(null);
                 let data: Product[] = [];
-                if(!selectedCategory) {
+                if(selectedCategory === null) {
                   data  = await fetchAllProducts();
                   setProducts(data);
                 } else {

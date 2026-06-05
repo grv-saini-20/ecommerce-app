@@ -13,7 +13,7 @@ const ProductCard = ({product}: {product: ProductcardProps}) => {
 
   return (
     <article className="group relative">
-        <img src={product.images[0]} alt={product.title} className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
+        <img src={product.images[0].replace(/[\[\]"]/g, '')?? "https://placehold.co/600x600/e2e8f0/475569?text=No+Image+Available"} alt={product.title} className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
         <div className="mt-4 flex justify-between">
           <div>
             <h3 className="text-sm text-gray-700">
