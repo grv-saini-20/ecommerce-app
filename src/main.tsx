@@ -4,11 +4,13 @@ import './index.css'
 import App from './App.tsx'
 import { createRoutesFromElements, Route, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Products from './pages/Products.tsx'
+import ProductDetails from './pages/ProductDetails.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App/>}>
-      <Route path="/products" element={<Products />} />
+      <Route index element={<Products />} />
+      <Route path="/product/:id" element={<ProductDetails />} />
     </Route>
   )
 )

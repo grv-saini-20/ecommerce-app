@@ -26,8 +26,8 @@ const Products = () => {
 
   return (
     <>
-      <h1>Products</h1>
-      {loading && <Loader />}
+      <h1 className="text-2xl font-bold mb-4">Products</h1>
+      {loading && <div className="fixed top-[50%] left-[50%] flex justify-between items-center animate-spin"><Loader size={48}/></div>}
       {error && <p>Error loading products</p>}
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (

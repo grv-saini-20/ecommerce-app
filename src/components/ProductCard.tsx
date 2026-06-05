@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { IProduct as ProductcardProps } from '../types'
 import { ShoppingCart } from 'lucide-react';
 
@@ -11,10 +12,10 @@ const ProductCard = ({product}: {product: ProductcardProps}) => {
         <div className="mt-4 flex justify-between">
           <div>
             <h3 className="text-sm text-gray-700">
-              <a href="#">
+              <Link to={`/product/${product.id}`}>
                 <span aria-hidden="true" className="absolute inset-0"></span>
                 {product.title}
-              </a>
+              </Link>
             </h3>
             <p className="mt-1 text-sm text-gray-500">{product.category.name}</p>
           </div>
