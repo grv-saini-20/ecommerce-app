@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllProducts, fetchCategories } from "../services/productService";
+import { fetchAllProducts, fetchCategories, fetchProductsByCategory } from "../services/productService";
 import { Loader } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import type { Category, Product } from "../types";
@@ -27,8 +27,14 @@ const Products = () => {
         const loadInitialData = async() => {
             try {
                 setLoading(true);
-                const data  = await fetchAllProducts();
-                setProducts(data);
+                let data: Product[] = [];
+                if(!selectedCategory) {
+                  data  = await fetchAllProducts();
+                  setProducts(data);
+                } else {
+                  data = await fetchProductsByCategory(selectedCategory);
+                  setProducts(data);
+                }
             } catch (error) {
                 setError(error);
             } finally {
@@ -36,7 +42,7 @@ const Products = () => {
             }
         }
         loadInitialData();
-    },[])
+    },[selectedCategory])
 
   return (
     <>
@@ -70,13 +76,13 @@ const Products = () => {
     </div>
       {loading && <div className="fixed top-[50%] left-[50%] flex justify-between items-center animate-spin"><Loader size={48}/></div>}
       {error && <p>Error loading products</p>}
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {!loading && !error && (<ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <li key={product.id}>
             <ProductCard product={product}/>
           </li>
         ))}
-      </ul>
+      </ul>)}
     </>
   )
 }
