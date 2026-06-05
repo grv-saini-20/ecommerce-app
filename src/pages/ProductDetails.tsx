@@ -45,7 +45,7 @@ const ProductDetails = () => {
         Home
       </button>
       <ChevronLeft size={16} />
-      <h1 className="text-base text-gray-900">Product Details</h1>
+      <h1 className="text-sm text-gray-900">Product Details</h1>
     </header>
 
       {loading && <div className="fixed top-[50%] left-[50%] flex justify-between items-center animate-spin"><Loader size={48}/></div>}

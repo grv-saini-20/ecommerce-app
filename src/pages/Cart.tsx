@@ -1,3 +1,4 @@
+import { ChevronLeft } from "lucide-react";
 import CartItem from "../components/CartItem";
 import { useCart } from "../context/cartContext";
 
@@ -14,7 +15,16 @@ function Cart() {
 
   return (
     <div className="max-w-4xl mx-auto px-4">
-      <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
+      <header className="mb-4 flex items-center gap-4">
+      <button
+          onClick={() => window.history.back()}
+          className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors cursor-pointer group"
+          >
+          Back
+        </button>
+        <ChevronLeft size={16} />
+        <h1 className="text-sm text-gray-900">Cart</h1>
+      </header>
 
       <div className="space-y-6">
         {cartItems.map((item) => (
