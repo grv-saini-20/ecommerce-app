@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
 import type { Product as ProductcardProps } from '../types'
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/cartContext';
+import { useCallback } from 'react';
 
 const ProductCard = ({product}: {product: ProductcardProps}) => {
-    const handleAddToCart = () => {
-        alert("added to cart")
-    }
+  const {addToCart} = useCart();
+
+    const handleAddToCart = useCallback(() => {
+      addToCart(product);
+    }, [addToCart, product]);
+
   return (
     <article className="group relative">
         <img src={product.images[0]} alt={product.title} className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />

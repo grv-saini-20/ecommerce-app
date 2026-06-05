@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fetchProductById } from "../services/productService";
 import { useNavigate, useParams } from "react-router-dom";
 import { ChevronLeft, Loader , ShoppingCart } from "lucide-react";
+import { useCart } from "../context/cartContext";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const {addToCart} = useCart();
 
   const { id } = useParams();
+
+  const handleAddToCart = useCallback(() => {
+        addToCart(product);
+      }, [addToCart, product]);
 
   useEffect(() => {
     const loadProductDetails = async() => {
@@ -76,7 +82,7 @@ const ProductDetails = () => {
 
             <div className="mt-8 pt-6">
                 <button
-                    onClick={() => alert("added to cart")}
+                    onClick={handleAddToCart}
                     className="w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white text-sm font-medium py-2.5 px-4 rounded-md transition-colors duration-150 cursor-pointer shadow-sm"
                     >
                     <ShoppingCart className="w-4 h-4" />
