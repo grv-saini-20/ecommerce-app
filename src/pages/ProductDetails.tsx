@@ -36,7 +36,7 @@ const ProductDetails = () => {
   },[id])
 
   return (
-    <>
+    <section className="max-w-4xl mx-auto">
     <header className="mb-4 flex items-center gap-4">
     <button
         onClick={() => navigate('/')}
@@ -93,7 +93,7 @@ const ProductDetails = () => {
             </div>
         </div>
       )}
-    </>
+    </section>
   )
 }
 

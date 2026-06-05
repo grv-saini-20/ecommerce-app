@@ -14,7 +14,7 @@ function Cart() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4">
+    <div className="max-w-4xl mx-auto">
       <header className="mb-4 flex items-center gap-4">
       <button
           onClick={() => window.history.back()}

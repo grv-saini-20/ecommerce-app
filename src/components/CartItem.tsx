@@ -9,7 +9,7 @@ function CartItem({ item, quantity }: {item : any, quantity: number}) {
   }, [removeFromCart, item.id]);
 
   return (
-    <article className="flex justify-between items-center border p-4 rounded">
+    <article className="flex flex-col md:flex-row md:items-center md:justify-between  border p-2 rounded">
       <div className="flex gap-2">
         <div className="flex gap-2">
             <img 
@@ -26,14 +26,14 @@ function CartItem({ item, quantity }: {item : any, quantity: number}) {
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        <button
-            onClick={handleRemove}
-            className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-sm font-medium py-2.5 px-4 rounded-md transition-colors duration-150 cursor-pointer shadow-sm"
-            >
-            Remove Item
-            </button>
-      </div>
+      <div>
+      <button
+          onClick={handleRemove}
+          className="w-full mt-2 lg:mt-0 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-sm font-medium py-2.5 px-4 rounded-md transition-colors duration-150 cursor-pointer shadow-sm"
+          >
+          Remove Item
+        </button>
+            </div>
     </article>
   );
 }
