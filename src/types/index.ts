@@ -1,7 +1,7 @@
 export interface IProduct {
-    id: string,
+    id?: string,
     title: string,
-    slug: string,
+    slug?: string,
     price: number,
     description: string,
     category: {

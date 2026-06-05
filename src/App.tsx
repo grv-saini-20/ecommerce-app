@@ -1,9 +1,12 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
 
 function App() {
   return (
     <>
-      <h1 className="text-4xl font-bold">E-Commerce APP</h1>
+    <section className="container mx-auto p-4">
+      <Outlet/>
+    </section>
     </>
   )
 }

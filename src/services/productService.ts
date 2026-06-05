@@ -1,6 +1,6 @@
 import type { IProduct } from "../types"
 
-const BASE_URL = 'https://api.escuelajs.co/api/v1/'
+const BASE_URL = 'https://api.escuelajs.co/api/v1'
 
 export const fetchAllProducts = async():Promise<IProduct[]> => {
   const response = await fetch(`${BASE_URL}/products`)
