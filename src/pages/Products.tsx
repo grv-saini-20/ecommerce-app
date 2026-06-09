@@ -3,6 +3,7 @@ import { fetchAllProducts, fetchCategories, fetchProductsByCategory } from "../s
 import { Loader } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import type { Category, Product } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -10,6 +11,8 @@ const Products = () => {
     const [error, setError] = useState(null);
     const [categories, setCategories] = useState<Category[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
       setSelectedCategory(Number(localStorage.getItem("categoryId")));
@@ -69,7 +72,7 @@ const Products = () => {
         {categories.map((category) => (
             <button
                 key={category.id}
-                onClick={() => {setSelectedCategory(category.id), localStorage.setItem("categoryId", category.id.toString())}}
+                onClick={() => {setSelectedCategory(category.id), localStorage.setItem("categoryId", category.id.toString()), navigate(`/products?categoryId=${category.id}`)}}
                 className={`px-4 py-2 text-sm font-semibold rounded-full border transition-all cursor-pointer ${
                     selectedCategory === category.id
                         ? "bg-sky-600 border-sky-600 text-white shadow-sm"
