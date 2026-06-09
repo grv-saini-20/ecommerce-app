@@ -12,10 +12,15 @@ const Products = () => {
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
     useEffect(() => {
+      setSelectedCategory(Number(localStorage.getItem("categoryId")));
+    }, []);
+
+    useEffect(() => {
         const loadCategories = async () => {
             try {
                 const categoryData = await fetchCategories();
                 setCategories(categoryData);
+
             } catch (err) {
                 console.error("Failed to fetch categories", err);
             }
@@ -64,7 +69,7 @@ const Products = () => {
         {categories.map((category) => (
             <button
                 key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => {setSelectedCategory(category.id), localStorage.setItem("categoryId", category.id.toString())}}
                 className={`px-4 py-2 text-sm font-semibold rounded-full border transition-all cursor-pointer ${
                     selectedCategory === category.id
                         ? "bg-sky-600 border-sky-600 text-white shadow-sm"

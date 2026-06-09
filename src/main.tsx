@@ -11,7 +11,7 @@ import Cart from './pages/Cart.tsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App/>}>
-      <Route index element={<Products />} />
+      <Route index path="/products" element={<Products />} />
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/cart" element={<Cart />} />
     </Route>
@@ -21,7 +21,7 @@ const router = createBrowserRouter(
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <CartProvider>
-    <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </CartProvider>
   </StrictMode>,
 )

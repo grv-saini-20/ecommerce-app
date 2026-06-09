@@ -12,7 +12,7 @@ const Header = ({ cartCount = 0 }) => {
         </Link>
 
         <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
-          <Link to="/" className="hover:text-sky-600 transition">
+          <Link to="/products" className="hover:text-sky-600 transition">
             Home
           </Link>
         </nav>
